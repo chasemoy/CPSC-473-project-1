@@ -1,4 +1,4 @@
-$("form").submit(function() {
+$("form#registration").submit(function() {
   var username = $("#username").val();
   var email = $("#email").val();
   var password = $("#password").val();
