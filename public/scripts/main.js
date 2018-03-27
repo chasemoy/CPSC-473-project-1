@@ -1,4 +1,3 @@
-console.log("refresh");
 (function (window) {
   "use strict";
   var MAIN_CONTAINER_SELECTOR = "#main-container";
