@@ -1,4 +1,7 @@
 (function (window) {
+  "use strict";
+  var App = window.App || {};
+  
   $("form#registration").submit(function() {
     var username = $("#username").val();
     var email = $("#email").val();
@@ -23,8 +26,7 @@
           alert(JSON.stringify(error));
         } else {
           alert("Registration successful");
-          $(App.MAIN_WINDOW_SELECTOR).empty();
-          $(App.MAIN_WINDOW_SELECTOR).load("/login.html");
+          App.load_page("/login.html");
         }
       });
     }
