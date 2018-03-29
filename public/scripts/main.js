@@ -1,10 +1,13 @@
 (function (window) {
   "use strict";
+  var App = window.App || {};
+
   var MAIN_CONTAINER_SELECTOR = "#main-container";
-  var MAIN_WINDOW_SELECTOR = "#main-window";
+  App.MAIN_WINDOW_SELECTOR = "#main-window";
 
-  $(MAIN_WINDOW_SELECTOR).load("register.html");
+  $(App.MAIN_WINDOW_SELECTOR).load("register.html");
 
+  // Disable anchor tags - https://stackoverflow.com/a/1164654
   $(function() {
     $(MAIN_CONTAINER_SELECTOR).on("click", function (e) {
       if ($(e.target).is("a")) {
@@ -12,10 +15,12 @@
         if (href && href[0] == '/') {
           e.preventDefault();
 
-          $(MAIN_WINDOW_SELECTOR).empty();
-          $(MAIN_WINDOW_SELECTOR).load(href);
+          $(App.MAIN_WINDOW_SELECTOR).empty();
+          $(App.MAIN_WINDOW_SELECTOR).load(href);
         }
       }
     });
   });
+
+  window.App = App;
 })(window);
