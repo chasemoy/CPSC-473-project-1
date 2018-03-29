@@ -1,10 +1,29 @@
-<div>
-  <h3>first_name last_name</h3>
-  <h3>email address</h3>
-  <h3>book 1</h3>
-  <p>comment 1</p>
-  <h3>book 2</h3>
-  <p>comment 2</p>
-  <h3>book 3</h3>
-  <p>comment 3</p>
+<style>
+#profile p {max-width: 100%; max-height: 100%;}
+#profile div {max-width: 100%; max-height: 100%;}
+.comment-container {position:relative;}
+.comment-container p {word-wrap: break-word;}
+.comment {color: black;}
+.text {position: absolute; top: 0; z-index: 2; pointer-events: none;}
+.text {color: transparent;}
+.text .invalid {color: red;}
+
+/* Placeholder support for contentEditable elements, without JavaScript - https://codepen.io/flesler/pen/AEIFc */
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}
+</style>
+<div id="profile">
+  <p contenteditable="true" placeholder="Enter name..."></p>
+  <p contenteditable="true" placeholder="Enter email..."></p>
+  <p contenteditable="true" placeholder="Enter title..."></p>
+  <div class="comment-container">
+    <p class="comment" contenteditable="true" placeholder="Enter comment..."></p>
+    <p class="text"><span class="invalid"></span></p>
+  </div>
 </div>
+
+<div class="btn">save</div>
+
+<script src="scripts/profile.js"></script>
