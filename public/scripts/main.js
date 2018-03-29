@@ -7,12 +7,14 @@
 
   $(function() {
     $(MAIN_CONTAINER_SELECTOR).on("click", function (e) {
-      e.preventDefault();
+      if ($(e.target).is("a")) {
+        var href = $(e.target).attr("href");
+        if (href && href[0] == '/') {
+          e.preventDefault();
 
-      var href = $(e.target).attr("href");
-      if (href && href[0] == '/') {
-        $(MAIN_WINDOW_SELECTOR).empty();
-        $(MAIN_WINDOW_SELECTOR).load(href);
+          $(MAIN_WINDOW_SELECTOR).empty();
+          $(MAIN_WINDOW_SELECTOR).load(href);
+        }
       }
     });
   });
