@@ -4,7 +4,9 @@
 
   $("a#logout").click(function() {
     dpd.users.logout(function(res, err) {
-      App.load_page("/login.html");
+      if (err) {
+        alert(JSON.stringify(err));
+      }
     });
   });
 

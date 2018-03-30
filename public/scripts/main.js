@@ -2,8 +2,8 @@
   "use strict";
   var App = window.App || {};
   App.MAIN_WINDOW_SELECTOR = "#main-window";
-  App.LOGGED_OUT_NAV_LINKS_SELECTOR = "#login, #register";
-  App.LOGGED_IN_NAV_LINKS_SELECTOR = "#logout, #profile, #matched-people, #swipe";
+  App.LOGGED_OUT_NAV_LINKS_SELECTOR = "[data-nav-class=\"logged-out\"]";
+  App.LOGGED_IN_NAV_LINKS_SELECTOR = "[data-nav-class=\"logged-in\"]";
 
   var MAIN_CONTAINER_SELECTOR = "#main-container";
 
@@ -11,27 +11,32 @@
   // parameters
   // - href : Absolute path to the file you want to load, e.g. ""/login.html"
   App.load_page = function(href) {
-  console.log("loaded");
+    console.log("loaded");
     $(App.MAIN_WINDOW_SELECTOR).empty();
     $(App.MAIN_WINDOW_SELECTOR).load(href);
 
-    dpd.users.me(function(result, error) {
-      if (error) {
-        alert(JSON.stringify(error));
-      } else {
-        if (result) {
-          $(App.LOGGED_OUT_NAV_LINKS_SELECTOR).hide();
-          $(App.LOGGED_IN_NAV_LINKS_SELECTOR).show();
-        }
-        else {
-          $(App.LOGGED_IN_NAV_LINKS_SELECTOR).hide();
-          $(App.LOGGED_OUT_NAV_LINKS_SELECTOR).show();
-        }
+    dpd.users.me(function(user) {
+      if (user) {
+        console.log("in");
+        $(App.LOGGED_OUT_NAV_LINKS_SELECTOR).hide();
+        $(App.LOGGED_IN_NAV_LINKS_SELECTOR).show();
+      }
+      else {
+        console.log("out");
+        $(App.LOGGED_IN_NAV_LINKS_SELECTOR).hide();
+        $(App.LOGGED_OUT_NAV_LINKS_SELECTOR).show();
       }
     });
   };
 
-  App.load_page("/login.html");
+  // Load default appropriate page
+  var defaultPage = "/home.html";
+  dpd.users.me(function(user) {
+    if (user) {
+      defaultPage = "/profile.html";
+    }
+  });
+  App.load_page(defaultPage);
 
   // Disable anchor tags - https://stackoverflow.com/a/1164654
   $(function() {

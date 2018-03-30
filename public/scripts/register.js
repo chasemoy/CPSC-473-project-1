@@ -1,7 +1,7 @@
 (function (window) {
   "use strict";
   var App = window.App || {};
-  
+
   $("form#registration").submit(function() {
     var username = $("#username").val();
     var email = $("#email").val();

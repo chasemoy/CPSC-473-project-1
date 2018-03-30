@@ -11,21 +11,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="/dpd.js"></script>
 
   <div id="main-container" class="container">
-    <nav>
-      <a id="login" href="/login.html">login</a>
-      <a id="register" href="/register.html">register</a>
-      <a id="logout" href="/login.html">logout</a>
-      <a id="profile" href="/profile.html">profile</a>
-      <a id="matched-people" href="/matched-people.html">matched-people</a>
-    </nav>
+    <header>
+      <nav>
+        <a data-nav-class="logged-out" href="/home.html">home</a>
+        <a data-nav-class="logged-out" href="/login.html">login</a>
+        <a data-nav-class="logged-out" href="/register.html">register</a>
+        <a data-nav-class="logged-in" id="logout" href="/home.html">logout</a>
+        <a data-nav-class="logged-in" href="/profile.html">profile</a>
+        <a data-nav-class="logged-in" href="/matched-people.html">matched-people</a>
+      </nav>
+    </header>
     <main id="main-window">
     </main>
+    <footer></footer>
   </div>
 
   <script src="scripts/main.js"></script>
