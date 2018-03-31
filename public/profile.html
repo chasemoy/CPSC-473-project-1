@@ -1,29 +1,33 @@
-<style>
-#profile p {max-width: 100%; max-height: 100%;}
-#profile div {max-width: 100%; max-height: 100%;}
-.comment-container {position:relative;}
-.comment-container p {word-wrap: break-word;}
-.comment {color: black;}
-.text {position: absolute; top: 0; z-index: 2; pointer-events: none;}
-.text {color: transparent;}
-.text .invalid {color: red;}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-/* Placeholder support for contentEditable elements, without JavaScript - https://codepen.io/flesler/pen/AEIFc */
-[contenteditable=true]:empty:before {
-  content: attr(placeholder);
-  display: block; /* For Firefox */
-}
-</style>
-<div id="profile">
-  <p contenteditable="true" placeholder="Enter name..."></p>
-  <p contenteditable="true" placeholder="Enter email..."></p>
-  <p contenteditable="true" placeholder="Enter title..."></p>
-  <div class="comment-container">
-    <p class="comment" contenteditable="true" placeholder="Enter comment..."></p>
-    <p class="text"><span class="invalid"></span></p>
-  </div>
-</div>
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+</head>
 
-<div class="btn">save</div>
+<body>
+  <form class="profile_form" data-user-profile="form" action="/profile.html">
+    <div id="profile">
+      <p placeholder="User name.." id="username"></p>
+      
+      <input type="email" readonly="true" id="email"><input type="button" value="edit" class="editemail">
+      <div>
+        <input type="submit" value="save" id="save">
+        <div>Book1<input type="button" value="edit" class="editfield1"><input type="text" readonly="true" contenteditable="true" class="edit1" id="booktitle1" placeholder="Enter title...">
+          <div class="comment-container">
+            <input type="text" class="edit1" readonly="true" contenteditable="true" id="bookcomment1" placeholder="Enter comment..."></div>
+        </div>
+        <div>Book2<input type="button" value="edit" class="editfield2"><input type="text" readonly="true" contenteditable="true" class="edit2" id="booktitle2" placeholder="Enter title...">
+          <div class="comment-container"><input type="text" readonly="true" class="edit2" contenteditable="true" id="bookcomment2" placeholder="Enter comment..."></div>
+        </div>
+        <div>Book3<input type="button" value="edit" class="editfield3"><input type="text" readonly="true" contenteditable="true" class="edit3" id="booktitle3" placeholder="Enter title...">
+          <div class="comment-container"><input type="text" readonly="true" class="edit3" contenteditable="true" id="bookcomment3" placeholder="Enter comment..."></div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script src="scripts/profile.js"></script>
+</body>
 
-<script src="scripts/profile.js"></script>
+</html>
