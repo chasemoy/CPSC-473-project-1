@@ -4,4 +4,9 @@ npm-debug.log
 
 # deployd
 .dpd/
+<<<<<<< HEAD
 data/
+=======
+data/
+Users_who_have_matched/stylesheets/styles.css
+>>>>>>> 89b8ebf7ac06a9615f7b478f0a31f2c3eab28cf7
