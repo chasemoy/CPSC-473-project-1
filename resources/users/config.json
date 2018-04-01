@@ -1,0 +1,85 @@
+{
+	"type": "UserCollection",
+	"properties": {
+		"email": {
+			"name": "email",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "email",
+			"order": 0
+		},
+		"bookTitle1": {
+			"name": "bookTitle1",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "bookTitle1",
+			"order": 1
+		},
+		"bookTitle2": {
+			"name": "bookTitle2",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "bookTitle2",
+			"order": 2
+		},
+		"bookTitle3": {
+			"name": "bookTitle3",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "bookTitle3",
+			"order": 3
+		},
+		"bookComment1": {
+			"name": "bookComment1",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "bookComment1",
+			"order": 4
+		},
+		"bookComment2": {
+			"name": "bookComment2",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "bookComment2",
+			"order": 5
+		},
+		"bookComment3": {
+			"name": "bookComment3",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "bookComment3",
+			"order": 6
+		},
+		"previousSize": {
+			"name": "previousSize",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "previousSize",
+			"order": 7
+		},
+		"swipedPeople": {
+			"name": "swipedPeople",
+			"type": "array",
+			"typeLabel": "array",
+			"required": false,
+			"id": "swipedPeople",
+			"order": 8
+		},
+		"matchedList": {
+			"name": "matchedList",
+			"type": "array",
+			"typeLabel": "array",
+			"required": false,
+			"id": "matchedList",
+			"order": 9
+		}
+	}
+}
