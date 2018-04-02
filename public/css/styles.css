@@ -31,3 +31,11 @@
     background-color: #D32F2F;
     border-color: #D50000; /*set the color you want here*/
 }
+
+#profile {
+  padding-top: 5vh;
+}
+
+#profile .username {
+  font-weight: bold;
+}

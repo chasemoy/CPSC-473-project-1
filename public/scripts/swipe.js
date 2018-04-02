@@ -1,85 +1,59 @@
-var userId;
-var i = 2;
-var lengthList = {};
-dpd.users.me(function(user) {
+(function(window) {
+  "use strict";
+  var App = window.App || {};
 
-  if (user) {
-    userId = user.id;
-  } else {
-    location.href = "/";
-  }
+  var NO_BOOK_TEXT = "Untitled";
+  var NO_COMMENT_TEXT = "No comment."
 
-  dpd.users.get(function (result, err) {
-    console.log(lengthList);
-i = Math.floor(Math.random() * result.length);
-while (userId == result[i].id)
-{
-  i = Math.floor(Math.random() * result.length);
-}
-      if (userId != result[i].id) {
-        $("h7").text(`Person   ${i}`);
-        $("h1").text(`Book 1: ${  result[i].bookTitle1}`);
-        $("h2").text(` Book 1 comment : ${  result[i].bookComment1}`);
-        $("h3").text(`Book 2: ${  result[i].bookTitle2}`);
-        $("h4").text(`Book 2 comment: ${  result[i].bookComment2}`);
-        $("h5").text(`Book 3: ${  result[i].bookTitle3}`);
-        $("h6").text(`Book 3 comment: ${  result[i].bookComment3}`);
-      }
+  var userId;
+  var lengthList = {};
 
-    if (err) {
-   return console.log(err);
-  }
-    console.log(result);
-  });
-});
-
-$('#dislike-btn').click(function() {
-  dpd.users.get(function (result, err) {
-
-    i = Math.floor(Math.random() * result.length);
-    while (userId == result[i].id)
-    {
-      i = Math.floor(Math.random() * result.length);
+  dpd.users.me(function(user) {
+    if (user) {
+      userId = user.id;
+    } else {
+      location.href = "/";
     }
-      if (userId != result[i].id) {
-        $("h7").text(`Person   ${i}`);
-        $("h1").text(`Book 1: ${  result[i].bookTitle1}`);
-        $("h2").text(` Book 1 comment : ${  result[i].bookComment1}`);
-        $("h3").text(`Book 2: ${  result[i].bookTitle2}`);
-        $("h4").text(`Book 2 comment: ${  result[i].bookComment2}`);
-        $("h5").text(`Book 3: ${  result[i].bookTitle3}`);
-        $("h6").text(`Book 3 comment: ${  result[i].bookComment3}`);
+  });
+
+  $('#dislike-btn').click(retrieveAnotherProfile);
+  $('#like-btn').click(retrieveAnotherProfile);
+
+  retrieveAnotherProfile();
+
+  function retrieveAnotherProfile() {
+    dpd.users.get(function(result, err) {
+      if (err) {
+        return console.log(err);
+      }
+      var i = Math.floor(Math.random() * result.length);
+      while (userId == result[i].id) {
+        i = Math.floor(Math.random() * result.length);
       }
 
-    if (err) {
-   return console.log(err);
-  }
-    console.log(result);
-  });
-});
-
-$('#like-btn').click(function() {
-
-  dpd.users.get(function (result, err) {
-
-    i = Math.floor(Math.random() * result.length);
-    while (userId == result[i].id)
-    {
-      i = Math.floor(Math.random() * result.length);
-    }
       if (userId != result[i].id) {
-        $("h7").text(`Person   ${i}`);
-        $("h1").text(`Book 1: ${  result[i].bookTitle1}`);
-        $("h2").text(` Book 1 comment : ${  result[i].bookComment1}`);
-        $("h3").text(`Book 2: ${  result[i].bookTitle2}`);
-        $("h4").text(`Book 2 comment: ${  result[i].bookComment2}`);
-        $("h5").text(`Book 3: ${  result[i].bookTitle3}`);
-        $("h6").text(`Book 3 comment: ${  result[i].bookComment3}`);
+        displayProfile(result[i])
       }
-
-    if (err) {
-   return console.log(err);
+    });
   }
-    console.log(result);
-  });
-});
+
+  function displayProfile(result) {
+    $(".username").text(result.username);
+
+    var book1 = result.bookTitle1 == "" ? result.bookTitle1 : NO_BOOK_TEXT;
+    $("#book1").text(book1);
+    var comment1 = result.bookComment1 == "" ? result.bookComment1 : NO_COMMENT_TEXT;
+    $("#comment1").text(comment1);
+
+    var book2 = result.bookTitle2 == "" ? result.bookTitle2 : NO_BOOK_TEXT;
+    $("#book2").text(book2);
+    var comment2 = result.bookComment2 == "" ? result.bookComment2 : NO_COMMENT_TEXT;
+    $("#comment2").text(comment2);
+
+    var book3 = result.bookTitle3 == "" ? result.bookTitle3 : NO_BOOK_TEXT;
+    $("#book3").text(book3);
+    var comment3 = result.bookComment3 == "" ? result.bookComment3 : NO_COMMENT_TEXT;
+    $("#comment3").text(comment3);
+  }
+
+})(window);
