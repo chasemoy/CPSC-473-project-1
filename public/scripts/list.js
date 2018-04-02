@@ -19,7 +19,7 @@
    // Create a new instance of a row, using the coffee order info
    var rowElement = new Row(userProfile);
    // Add the new row instance's $element property to the checklist
-   this.$element.append(rowElement.$element);
+   this.$element.append(rowElement);
  };
 
  var matchcount = 3;
@@ -45,9 +45,10 @@
    $p.append(description);
    $div.append($p);
    r.append($div);
-   $(".w3-white").append(r);
 
+   return r;
  }
+
  App.CheckList = CheckList;
  window.App = App;
 })(window);

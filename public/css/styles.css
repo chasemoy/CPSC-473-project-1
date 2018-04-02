@@ -1,42 +1,3 @@
-/* profile.html */
-
-#profile p {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-#profile div {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.comment-container {
-  position: relative;
-}
-
-.comment-container p {
-  word-wrap: break-word;
-}
-
-.comment {
-  color: black;
-}
-
-.text {
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.text {
-  color: transparent;
-}
-
-.text .invalid {
-  color: red;
-}
-
 /* Placeholder support for contentEditable elements, without JavaScript - https://codepen.io/flesler/pen/AEIFc */
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
@@ -44,22 +5,29 @@
   /* For Firefox */
 }
 
-/* home.html */
-
-#homepage section {
-  display: flex;
-  justify-content: center;
+#dummy-page {
+  height: 100vh;
 }
 
-#homepage section .textbox {
-  flex: 2 auto auto;
+#navbar a {
+  display: none;
 }
 
-#homepage section>* {
-  margin: 5px;
+#nav-body {
+  position: relative;
+  visibility: hidden;
 }
 
-#cta {
-  flex-direction: column;
-  align-items: center;
+.btn-link-custom {
+  color: #FF1744;
+}
+
+.btn-custom {
+  background-color: #f44336;
+  border-color: #D50000;
+}
+
+.btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open>.dropdown-toggle.btn-custom {
+    background-color: #D32F2F;
+    border-color: #D50000; /*set the color you want here*/
 }

@@ -1,33 +1,38 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Profile</title>
-</head>
-
-<body>
+<div class="container">
   <form class="profile_form" data-user-profile="form" action="/profile.html">
     <div id="profile">
-      <p placeholder="User name.." id="username"></p>
-      
-      <input type="email" readonly="true" id="email"><input type="button" value="edit" class="editemail">
+
+      <h1 placeholder="User name.." id="username"></h1>
+      <input type="email" readonly="true" id="email">
+      <input type="button" value="edit" class="editemail">
+
       <div>
-        <input type="submit" value="save" id="save">
-        <div>Book1<input type="button" value="edit" class="editfield1"><input type="text" readonly="true" contenteditable="true" class="edit1" id="booktitle1" placeholder="Enter title...">
+        <div>Book1<input type="button" value="edit" class="editfield1"></div>
+        <div>
+          <input type="text" readonly="true" contenteditable="true" class="edit1" id="booktitle1" placeholder="Enter title...">
           <div class="comment-container">
-            <input type="text" class="edit1" readonly="true" contenteditable="true" id="bookcomment1" placeholder="Enter comment..."></div>
+            <input type="text" class="edit1" readonly="true" contenteditable="true" id="bookcomment1" placeholder="Enter comment...">
+          </div>
         </div>
-        <div>Book2<input type="button" value="edit" class="editfield2"><input type="text" readonly="true" contenteditable="true" class="edit2" id="booktitle2" placeholder="Enter title...">
-          <div class="comment-container"><input type="text" readonly="true" class="edit2" contenteditable="true" id="bookcomment2" placeholder="Enter comment..."></div>
+        <div>Book2<input type="button" value="edit" class="editfield2"></div>
+        <div>
+          <input type="text" readonly="true" contenteditable="true" class="edit2" id="booktitle2" placeholder="Enter title...">
+          <div class="comment-container">
+            <input type="text" readonly="true" class="edit2" contenteditable="true" id="bookcomment2" placeholder="Enter comment...">
+          </div>
         </div>
-        <div>Book3<input type="button" value="edit" class="editfield3"><input type="text" readonly="true" contenteditable="true" class="edit3" id="booktitle3" placeholder="Enter title...">
-          <div class="comment-container"><input type="text" readonly="true" class="edit3" contenteditable="true" id="bookcomment3" placeholder="Enter comment..."></div>
+        <div>Book3<input type="button" value="edit" class="editfield3"></div>
+        <div>
+          <input type="text" readonly="true" contenteditable="true" class="edit3" id="booktitle3" placeholder="Enter title...">
+          <div class="comment-container">
+            <input type="text" readonly="true" class="edit3" contenteditable="true" id="bookcomment3" placeholder="Enter comment...">
+          </div>
         </div>
       </div>
     </div>
-  </form>
-  <script src="scripts/profile.js"></script>
-</body>
 
-</html>
+    <input type="submit" value="save" id="save">
+  </form>
+</div>
+
+<script src="scripts/profile.js"></script>

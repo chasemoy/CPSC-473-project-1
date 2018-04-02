@@ -12,8 +12,11 @@
   // - href : Absolute path to the file you want to load, e.g. ""/login.html"
   App.load_page = function(href) {
     console.log("loaded");
-    $(App.MAIN_WINDOW_SELECTOR).empty();
-    $(App.MAIN_WINDOW_SELECTOR).load(href);
+    $(App.MAIN_WINDOW_SELECTOR).fadeTo(400, 0, function() {
+        $(App.MAIN_WINDOW_SELECTOR).load(href, function() {
+          $(App.MAIN_WINDOW_SELECTOR).fadeTo(400, 1);
+        });
+    });
 
     dpd.users.me(function(user) {
       if (user) {
@@ -35,16 +38,17 @@
     if (user) {
       defaultPage = "/profile.html";
     }
+    App.load_page(defaultPage);
   });
-  App.load_page(defaultPage);
 
   // Disable anchor tags - https://stackoverflow.com/a/1164654
   $(function() {
     $(MAIN_CONTAINER_SELECTOR).on("click", function (e) {
       if ($(e.target).is("a")) {
         var href = $(e.target).attr("href");
-        if (href && href[0] == '/') {
+        if (href && href[0] == '/' && !$(e.target).hasClass(App.MENU_BTN_SELECTOR)) {
           e.preventDefault();
+          App.setActiveLink(href);
           App.load_page(href);
         }
       }
