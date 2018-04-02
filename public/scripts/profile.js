@@ -1,9 +1,5 @@
 (function(window) {
   "use strict";
-  var COMMENT_SELECTOR = ".comment";
-  var TEXT_SELECTOR = ".text";
-  var INVALID_TEXT = $("<span></span>").addClass("invalid");
-  var COMMENT_LIMIT = 128;
   var PROFILE_FORM = '[data-user-profile="form"]';
   //var RE=/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   dpd.users.me(function(me) {
