@@ -44,22 +44,7 @@
   /* For Firefox */
 }
 
-/* home.html */
-
-#homepage section {
-  display: flex;
-  justify-content: center;
-}
-
-#homepage section .textbox {
-  flex: 2 auto auto;
-}
-
-#homepage section>* {
-  margin: 5px;
-}
-
-#cta {
-  flex-direction: column;
-  align-items: center;
+#nav-body {
+  position: relative;
+  visibility: hidden;
 }

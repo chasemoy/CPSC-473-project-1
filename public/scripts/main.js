@@ -43,8 +43,9 @@
     $(MAIN_CONTAINER_SELECTOR).on("click", function (e) {
       if ($(e.target).is("a")) {
         var href = $(e.target).attr("href");
-        if (href && href[0] == '/') {
+        if (href && href[0] == '/' && !$(e.target).hasClass(App.MENU_BTN_SELECTOR)) {
           e.preventDefault();
+          App.setActiveLink(href);
           App.load_page(href);
         }
       }
