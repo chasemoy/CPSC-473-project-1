@@ -36,10 +36,12 @@
    var i = $('<i class="fa fa-users fa-fw w3-margin-right">  </i>'+name+'</button>');
    r.append(i);
    var $p = $('<p></p>');
-   var description = userProfile.book1+" ";
-   description += userProfile.book1comment+" ";
-   description += "<br>"+userProfile.book2+" ";
-   description += userProfile.book2comment+" ";
+   var description = userProfile.bookTitle1+": ";
+   description += userProfile.bookComment1+" ";
+   description += "<br>"+userProfile.bookTitle2+": ";
+   description += userProfile.bookComment2+" ";
+   description+= "<br>"+userProfile.bookTitle3+": ";
+   description+= userProfile.bookComment3;
    matchcount = (matchcount+1);
 
    $p.append(description);
