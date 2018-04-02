@@ -36,6 +36,11 @@
   padding-top: 5vh;
 }
 
+#profile-blank {
+  padding-top: 5vh;
+  display: none;
+}
+
 #profile .username {
   font-weight: bold;
 }
