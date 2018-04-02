@@ -44,6 +44,14 @@
   /* For Firefox */
 }
 
+#dummy-page {
+  height: 100vh;
+}
+
+#navbar a {
+  display: none;
+}
+
 #nav-body {
   position: relative;
   visibility: hidden;
