@@ -4,7 +4,7 @@
 
   dpd.users.me(function(user) {
     if (user) {
-      location.href = "/welcome.html";
+      console.log("error, already logged in");
     }
   });
 
@@ -20,6 +20,7 @@
         alert(error.message);
       } else {
         App.load_page("/profile.html");
+        App.setActiveLink("/profile.html");
       }
     });
 

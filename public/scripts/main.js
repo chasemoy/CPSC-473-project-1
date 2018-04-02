@@ -35,6 +35,7 @@
     if (user) {
       defaultPage = "/profile.html";
     }
+    App.setActiveLink(defaultPage);
     App.load_page(defaultPage);
   });
 

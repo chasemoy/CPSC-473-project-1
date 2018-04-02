@@ -3,12 +3,6 @@
   var PROFILE_FORM = '[data-user-profile="form"]';
   //var RE=/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   dpd.users.me(function(me) {
-    console.log(me);
-    /*    me.forEach( function(element){
-          if(element==NULL || element==undefined){
-            element=" ";
-          }
-        });*/
     $('#username').append("<span>" + me['username'] + "</span>");
     $('#email').attr('value', me['email']);
     $('#booktitle1').attr('value', me['bookTitle1']);
