@@ -38,8 +38,8 @@
     if (user) {
       defaultPage = "/profile.html";
     }
+    App.load_page(defaultPage);
   });
-  App.load_page(defaultPage);
 
   // Disable anchor tags - https://stackoverflow.com/a/1164654
   $(function() {
