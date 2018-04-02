@@ -11,7 +11,6 @@
   // parameters
   // - href : Absolute path to the file you want to load, e.g. ""/login.html"
   App.load_page = function(href) {
-    console.log("loaded");
     $(App.MAIN_WINDOW_SELECTOR).fadeTo(400, 0, function() {
         $(App.MAIN_WINDOW_SELECTOR).load(href, function() {
           $(App.MAIN_WINDOW_SELECTOR).fadeTo(400, 1);
@@ -20,12 +19,10 @@
 
     dpd.users.me(function(user) {
       if (user) {
-        console.log("in");
         $(App.LOGGED_OUT_NAV_LINKS_SELECTOR).hide();
         $(App.LOGGED_IN_NAV_LINKS_SELECTOR).show();
       }
       else {
-        console.log("out");
         $(App.LOGGED_IN_NAV_LINKS_SELECTOR).hide();
         $(App.LOGGED_OUT_NAV_LINKS_SELECTOR).show();
       }

@@ -27,6 +27,7 @@
         } else {
           alert("Registration successful");
           App.load_page("/login.html");
+          App.setActiveLink("/login.html");
         }
       });
     }
