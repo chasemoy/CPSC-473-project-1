@@ -150,7 +150,6 @@
   }
 
   function retrieveAnotherProfile() {
-    console.log("twice?");
     dpd.users.me(function(user) {
       dpd.users.get().then(function(result) {
         var unswipedPeople = result.filter(function(other){
