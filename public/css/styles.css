@@ -36,6 +36,7 @@
 
 #swipe-page {
   display: none;
+  overflow-y: hidden;
   padding-top: 5vh;
   text-align: center;
   position: relative;

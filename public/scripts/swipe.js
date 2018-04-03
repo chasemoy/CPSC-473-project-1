@@ -10,7 +10,6 @@
 
   var startPos = 0;
   var touchStarted = false;
-  var pos = 0;
   var RESET_POS = 0;
   var OPACITY_RANGE = 0.8;
   var LIKE_ICON_START_PERCENT = -100;
@@ -25,7 +24,7 @@
     }
   });
 
-  $('#dislike-btn').click(dislikeProfile());
+  $('#dislike-btn').click(retrieveAnotherProfile);
 
   $('#like-btn').click(function() {
     likeProfile();
@@ -46,13 +45,17 @@
   $("body").on({
     mousemove: function(e) {
       if (touchStarted) {
+        // Calculate values
         var delta = parseInt(e.pageX) - parseInt(startPos);
-        pos = delta + RESET_POS;
-        $("#profile").css("transform", "translate(" + pos + "px)");
+        var pos = delta + RESET_POS;
         var posRange = $("#swipe-page").width() / 2;
         var deltaPercent = Math.abs(pos/posRange);
+        // Animate profile swipe
+        $("#profile").css("transform", "translate(" + pos + "px)");
+        // Swipe transparency
         var opacity = 1 - (OPACITY_RANGE * deltaPercent);
         $("#profile").css("opacity", opacity);
+        // arrow icon animations
         if (pos > 0) {
           $("#dislike-icon").css("opacity",0);
           $("#like-icon").css("opacity", 1 * deltaPercent);
@@ -68,11 +71,56 @@
     mouseup: function(e) {
       if (touchStarted) {
         touchStarted = false;
-        $("#profile").animate({"transform": "translate(" + RESET_POS + "px)"});
-        $("#profile").animate({"opacity": 1});
-        $("#like-icon").css("opacity",0);
-        $("#dislike-icon").css("opacity", 0);
-        pos = RESET_POS;
+        // Calculate values
+        var delta = parseInt(e.pageX) - parseInt(startPos);
+        var pos = delta + RESET_POS;
+        var posRange = $("#swipe-page").width() / 2;
+        var deltaPercent = Math.abs(pos/posRange);
+        // Check if swipe completed
+        if (deltaPercent > 0.8) { // profile was liked/disliked
+          //  hide and reset profile page
+          $("#profile").css("opacity", 0);
+          $("#profile").css("transform", "translate(" + RESET_POS + "px)");
+          // Check like/disklike
+          var iconSelector;
+          var actionToTake;
+          var direction;
+          if (pos > 0) {
+            iconSelector = "#like-icon";
+            actionToTake = likeProfile;
+          }
+          else {
+            iconSelector = "#dislike-icon";
+            actionToTake = function(){;};
+          }
+          // Icon finish animation
+          $(iconSelector).animate({
+            // Increase size
+            "font-size": "14rem"
+          }, function() {
+            // Take action
+            actionToTake();
+            retrieveAnotherProfile();
+            setTimeout(function() {
+              // Reset icon positions and opacity
+              $("#swipe-page .icons").css("font-size", "10rem");
+              $("#like-icon").css("opacity",0);
+              $("#like-icon").css("transform", "translate(-50%, -100%)");
+              $("#dislike-icon").css("opacity", 0);
+              $("#dislike-icon").css("transform", "translate(-50%)");
+              // Animate new profile
+              $("#profile").animate({"opacity": 1});
+            }, 400);
+          });
+        }
+        else { // nothing happened
+          $("#profile").animate({"transform": "translate(" + RESET_POS + "px)"});
+          $("#profile").animate({"opacity": 1});
+          $("#like-icon").css("opacity",0);
+          $("#like-icon").css("transform", "translate(-50%, -100%)");
+          $("#dislike-icon").css("opacity", 0);
+          $("#dislike-icon").css("transform", "translate(-50%)");
+        }
       }
     }
   });
@@ -101,11 +149,8 @@
     });
   }
 
-  function dislikeProfile() {
-    retrieveAnotherProfile();
-  }
-
   function retrieveAnotherProfile() {
+    console.log("twice?");
     dpd.users.me(function(user) {
       dpd.users.get().then(function(result) {
         var unswipedPeople = result.filter(function(other){
