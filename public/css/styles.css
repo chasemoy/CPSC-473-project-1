@@ -1,4 +1,5 @@
 /* Placeholder support for contentEditable elements, without JavaScript - https://codepen.io/flesler/pen/AEIFc */
+
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
   display: block;
@@ -28,18 +29,23 @@
 }
 
 .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open>.dropdown-toggle.btn-custom {
-    background-color: #D32F2F;
-    border-color: #D50000; /*set the color you want here*/
+  background-color: #D32F2F;
+  border-color: #D50000;
+  /*set the color you want here*/
 }
 
 #swipe-page {
+  display: none;
   padding-top: 5vh;
   text-align: center;
+  position: relative;
 }
 
 #profile-blank {
-  padding-top: 5vh;
+  padding-top: 128px;
   display: none;
+  text-align: center;
+  font-size: 3rem;
 }
 
 #swipe-page #profile {
@@ -58,4 +64,24 @@
 
 #like-btn {
   float: right;
+}
+
+#swipe-page .icons {
+  color: #f44336;
+  opacity: 0;
+  font-size: 10rem;
+  position: absolute;
+  pointer-events: none;
+}
+
+#dislike-icon {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#like-icon {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
 }

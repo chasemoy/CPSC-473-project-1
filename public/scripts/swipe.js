@@ -13,6 +13,8 @@
   var pos = 0;
   var RESET_POS = 0;
   var OPACITY_RANGE = 0.8;
+  var LIKE_ICON_START_PERCENT = -100;
+  var DISLIKE_ICON_START_PERCENT = 0;
 
   dpd.users.me(function(user) {
     if (user) {
@@ -23,9 +25,61 @@
     }
   });
 
-  $('#dislike-btn').click(retrieveAnotherProfile);
+  $('#dislike-btn').click(dislikeProfile());
 
-  $('#like-btn').click(function(event) {
+  $('#like-btn').click(function() {
+    likeProfile();
+    retrieveAnotherProfile();
+  });
+
+  $("#profile blockquote *").on("mousedown", function(e) {
+    e.stopPropagation();
+  });
+  $("#profile").on({
+    mousedown: function(e) {
+      if (!touchStarted) {
+        touchStarted = true;
+        startPos = e.pageX;
+      }
+    }
+  });
+  $("body").on({
+    mousemove: function(e) {
+      if (touchStarted) {
+        var delta = parseInt(e.pageX) - parseInt(startPos);
+        pos = delta + RESET_POS;
+        $("#profile").css("transform", "translate(" + pos + "px)");
+        var posRange = $("#swipe-page").width() / 2;
+        var deltaPercent = Math.abs(pos/posRange);
+        var opacity = 1 - (OPACITY_RANGE * deltaPercent);
+        $("#profile").css("opacity", opacity);
+        if (pos > 0) {
+          $("#dislike-icon").css("opacity",0);
+          $("#like-icon").css("opacity", 1 * deltaPercent);
+          $("#like-icon").css("transform", "translate(-50%, " + (LIKE_ICON_START_PERCENT - (100 * deltaPercent)) + "%)");
+        }
+        else {
+          $("#like-icon").css("opacity", 0);
+          $("#dislike-icon").css("opacity", 1 * deltaPercent);
+          $("#dislike-icon").css("transform", "translate(-50%, " + (100 * deltaPercent) + "%)");
+        }
+      }
+    },
+    mouseup: function(e) {
+      if (touchStarted) {
+        touchStarted = false;
+        $("#profile").animate({"transform": "translate(" + RESET_POS + "px)"});
+        $("#profile").animate({"opacity": 1});
+        $("#like-icon").css("opacity",0);
+        $("#dislike-icon").css("opacity", 0);
+        pos = RESET_POS;
+      }
+    }
+  });
+
+  retrieveAnotherProfile();
+
+  function likeProfile() {
     var otherId = $("#profile").attr("value");
     // Add swiped user to swipedPeople
     dpd.users.put({id: userId}, {swipedPeople: {$push: otherId}}, function(result, error) {
@@ -45,43 +99,11 @@
         }
       }
     });
+  }
 
+  function dislikeProfile() {
     retrieveAnotherProfile();
-  });
-
-  $("#profile *").on("mousedown", function(e) {
-    e.stopPropagation();
-  });
-  $("#profile").on({
-    mousedown: function(e) {
-      if (!touchStarted) {
-        touchStarted = true;
-        startPos = e.pageX;
-      }
-    }
-  });
-  $("body").on({
-    mousemove: function(e) {
-      if (touchStarted) {
-        var delta = parseInt(e.pageX) - parseInt(startPos);
-        pos = delta + RESET_POS;
-        $("#profile").css("transform", "translate(" + pos + "px)");
-        var posRange = $("#swipe-page").width() / 2;
-        var opacity = 1 - Math.abs(OPACITY_RANGE * (pos/posRange));
-        $("#profile").css("opacity", opacity);
-      }
-    },
-    mouseup: function(e) {
-      if (touchStarted) {
-        touchStarted = false;
-        $("#profile").animate({"transform": "translate(" + RESET_POS + "px)"});
-        $("#profile").animate({"opacity": 1});
-        pos = RESET_POS;
-      }
-    }
-  });
-
-  retrieveAnotherProfile();
+  }
 
   function retrieveAnotherProfile() {
     dpd.users.me(function(user) {
@@ -103,7 +125,7 @@
   function displayProfile(result) {
     if (result) {
       $("#profile-blank").hide();
-      $("#profile").show();
+      $("#swipe-page").show();
 
       $("#profile").attr("value", result.id);
 
@@ -126,7 +148,7 @@
     }
     else {
       $("#profile-blank").show();
-      $("#profile").hide();
+      $("#swipe-page").hide();
     }
   }
 
