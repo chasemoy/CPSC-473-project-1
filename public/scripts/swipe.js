@@ -8,9 +8,11 @@
   var userId;
   var lengthList = {};
 
-  var xStart = 0;
-  var touchStart = false;
-  var posX = 0, lastPosX = 0;
+  var startPos = 0;
+  var touchStarted = false;
+  var pos = 0;
+  var RESET_POS = 0;
+  var OPACITY_LIMIT = 0.4;
 
   dpd.users.me(function(user) {
     if (user) {
@@ -52,28 +54,25 @@
   });
   $("#profile").on({
     mousedown: function(e) {
-      if (!touchStart) {
-        xStart = e.pageX;
-        touchStart = true;
+      if (!touchStarted) {
+        touchStarted = true;
+        startPos = e.pageX;
       }
     }
   });
   $("body").on({
     mousemove: function(e) {
-      if (touchStart) {
-        var deltaX = parseInt(e.pageX) - parseInt(xStart);
-        posX = deltaX + lastPosX;
+      if (touchStarted) {
+        var delta = parseInt(e.pageX) - parseInt(startPos);
+        pos = delta + RESET_POS;
 
-        $("#profile").css("transform", "translate(" + posX + "px)");
+        $("#profile").css("transform", "translate(" + pos + "px)");
       }
     },
     mouseup: function(e) {
-      if (touchStart) {
-        touchStart = false;
-        var deltaX = parseInt(e.pageX) - parseInt(xStart);
-        lastPosX = deltaX + lastPosX;
-
-        $("#profile").css("transform", "translate(" + lastPosX + "px)");
+      if (touchStarted) {
+        touchStarted = false;
+        $("#profile").animate({"transform": "translate(0px)"});
       }
     }
   });
