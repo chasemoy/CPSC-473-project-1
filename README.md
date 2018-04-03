@@ -49,3 +49,4 @@ Start the server with the following command:
 * [jTinder](https://github.com/do-web/jTinder)
 * [jquery.transform.js](https://github.com/louisremi/jquery.transform.js/)
 * [font awesome](https://fontawesome.com/)
+* [CSS tricks](https://css-tricks.com/)
