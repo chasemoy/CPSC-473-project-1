@@ -51,13 +51,11 @@
         var unswipedPeople = result.filter(function(other){
           return user.id != other.id;
         });
-        console.log(unswipedPeople);
         if (user.swipedPeople) {
           unswipedPeople = unswipedPeople.filter(function(other){
             return -1 == user.swipedPeople.indexOf(other.id);
           });
         }
-        console.log(unswipedPeople);
         // Display random user - https://stackoverflow.com/a/4550514
         displayProfile(unswipedPeople[Math.floor(Math.random() * unswipedPeople.length)]);
       });

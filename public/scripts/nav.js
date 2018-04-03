@@ -8,10 +8,16 @@
   var ACTIVE_LINK_CLASSES = "w3-bar-item w3-button w3-padding-large w3-white";
   var INACTIVE_LINK_CLASSES = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white";
 
-  $("a.logout-btn").click(function() {
+  $("a.logout-btn").click(function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     dpd.users.logout(function(res, err) {
       if (err) {
         alert(JSON.stringify(err));
+      }
+      else {
+        App.setActiveLink("/home.html");
+        App.load_page("/home.html");
       }
     });
   });
