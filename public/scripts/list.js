@@ -36,7 +36,8 @@
    var i = $('<i class="fa fa-users fa-fw w3-margin-right">  </i>'+name+'</button>');
    r.append(i);
    var $p = $('<p></p>');
-   var description = userProfile.bookTitle1+": ";
+   var description =userProfile.email+"<br>";
+   description += userProfile.bookTitle1+": ";
    description += userProfile.bookComment1+" ";
    description += "<br>"+userProfile.bookTitle2+": ";
    description += userProfile.bookComment2+" ";
