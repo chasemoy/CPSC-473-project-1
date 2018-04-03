@@ -8,6 +8,10 @@
   var userId;
   var lengthList = {};
 
+  var xStart = 0;
+  var touchStart = false;
+  var posX = 0, lastPosX = 0;
+
   dpd.users.me(function(user) {
     if (user) {
       userId = user.id;
@@ -41,6 +45,37 @@
     });
 
     retrieveAnotherProfile();
+  });
+
+  $("#profile *").on("mousedown", function(e) {
+    e.stopPropagation();
+  });
+  $("#profile").on({
+    mousedown: function(e) {
+      if (!touchStart) {
+        xStart = e.pageX;
+        touchStart = true;
+      }
+    }
+  });
+  $("body").on({
+    mousemove: function(e) {
+      if (touchStart) {
+        var deltaX = parseInt(e.pageX) - parseInt(xStart);
+        posX = deltaX + lastPosX;
+
+        $("#profile").css("transform", "translate(" + posX + "px)");
+      }
+    },
+    mouseup: function(e) {
+      if (touchStart) {
+        touchStart = false;
+        var deltaX = parseInt(e.pageX) - parseInt(xStart);
+        lastPosX = deltaX + lastPosX;
+
+        $("#profile").css("transform", "translate(" + lastPosX + "px)");
+      }
+    }
   });
 
   retrieveAnotherProfile();
