@@ -12,7 +12,7 @@
   var touchStarted = false;
   var pos = 0;
   var RESET_POS = 0;
-  var OPACITY_LIMIT = 0.4;
+  var OPACITY_RANGE = 0.8;
 
   dpd.users.me(function(user) {
     if (user) {
@@ -65,14 +65,18 @@
       if (touchStarted) {
         var delta = parseInt(e.pageX) - parseInt(startPos);
         pos = delta + RESET_POS;
-
         $("#profile").css("transform", "translate(" + pos + "px)");
+        var posRange = $("#swipe-page").width() / 2;
+        var opacity = 1 - Math.abs(OPACITY_RANGE * (pos/posRange));
+        $("#profile").css("opacity", opacity);
       }
     },
     mouseup: function(e) {
       if (touchStarted) {
         touchStarted = false;
-        $("#profile").animate({"transform": "translate(0px)"});
+        $("#profile").animate({"transform": "translate(" + RESET_POS + "px)"});
+        $("#profile").animate({"opacity": 1});
+        pos = RESET_POS;
       }
     }
   });
