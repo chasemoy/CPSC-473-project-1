@@ -1,3 +1,5 @@
+//code taken from https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_social&stacked=h
+//provides matchesUsers drop down menu functionality
 function myFunction(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {

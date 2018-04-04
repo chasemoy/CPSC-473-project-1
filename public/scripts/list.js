@@ -16,12 +16,13 @@
 
 
  CheckList.prototype.addRow = function(userProfile) {
-   // Create a new instance of a row, using the coffee order info
+   // Create a new instance of a row
    var rowElement = new Row(userProfile);
    // Add the new row instance's $element property to the checklist
    this.$element.append(rowElement);
  };
-
+ 
+//matchcount is to provide a unique ID, can start at any number
  var matchcount = 3;
  function Row(userProfile) {
    var buttonid = "Demo"+matchcount;
